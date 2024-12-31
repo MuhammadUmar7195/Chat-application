@@ -142,10 +142,10 @@ const messagePage = () => {
 
   return (
     <div
-      style={{ background: `url(${wallpaper})` }}
+      style={{ background: `url()` }}
       className="bg-no-repeat bg-cover"
     >
-      <header className="sticky top-0 z-50 lg:h-20 h-auto border-b bg-white shadow-md">
+      <header className="sticky top-0 z-40 lg:h-20 h-auto border-b bg-slate-300 shadow-md">
         <div className="flex justify-between items-center">
           <div className="flex items-center gap-6">
             <Link to={`/`} className="lg:hidden">

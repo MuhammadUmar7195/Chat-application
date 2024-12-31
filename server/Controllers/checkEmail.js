@@ -13,7 +13,7 @@ const checkEmail = async (req, res) => {
 
         return res.status(StatusCodes.OK).json({message: 'Email Verify', success: true, data: checkMail})
     } catch (error) {
-        return res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({ message: message.error, error: true })
+        return res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({ message: error.message, error: true })
     }
 }
 

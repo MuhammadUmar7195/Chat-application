@@ -2,7 +2,7 @@ import { BsChatDotsFill } from "react-icons/bs";
 import { FaUserFriends } from "react-icons/fa";
 import { TbLogout2 } from "react-icons/tb";
 import { useNavigate, NavLink } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { LuImages } from "react-icons/lu";
 import { MdVideoCameraBack } from "react-icons/md";
 import { useEffect, useState } from "react";
@@ -12,6 +12,7 @@ import EditUserOpen from "./editUserOpen.jsx";
 import axios from "axios";
 import toast from "react-hot-toast";
 import SearchUser from "./searchUser.jsx";
+import { logout } from "../store_redux/userSlice.js";
 
 const sidebar = () => {
   const [editUserOpen, setEditUserOpen] = useState(false);
@@ -20,6 +21,7 @@ const sidebar = () => {
   const user = useSelector((state) => state?.user);
   const connection = useSelector((state) => state?.user?.socketConnection);
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   useEffect(() => {
     if (connection) {
@@ -51,16 +53,10 @@ const sidebar = () => {
 
   const handleLogout = async () => {
     try {
-      const response = await axios({
-        method: "GET",
-        url: `${import.meta.env.VITE_BACKEND_URL}/api/logout`,
-        withCredentials: true,
-      });
-
-      if (response?.data?.logout) {
-        navigate("/email");
-      }
-
+      dispatch(logout());
+      navigate("/email");
+      localStorage.clear();
+      
       toast.loading("Wait for Logout", { duration: 3000 });
     } catch (error) {
       toast.error(error);
@@ -69,7 +65,7 @@ const sidebar = () => {
 
   return (
     <div className="w-full h-full bg-slate-400 flex">
-      <div className="bg-slate-200 h-full w-12 rounded-tr-lg rounded-br-lg py-5 flex justify-between flex-col items-center ">
+      <div className="bg-slate-300 h-full w-12 rounded-tr-lg rounded-br-lg py-5 flex justify-between flex-col items-center ">
         <div className="space-y-3">
           <NavLink
             title="Chat"
