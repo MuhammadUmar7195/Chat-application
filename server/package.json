@@ -7,9 +7,9 @@
     "run": "node app.js"
   },
   "keywords": [],
-  "author": "",
+  "author": "Muhammad Umar",
   "license": "ISC",
-  "description": "",
+  "description": "Chat App",
   "dependencies": {
     "bcryptjs": "^2.4.3",
     "cookie-parser": "^1.4.7",
